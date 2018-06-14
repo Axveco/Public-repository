@@ -3,7 +3,7 @@ const CustomToken = artifacts.require('./CustomToken.sol');
 
 let currentTime = Math.floor(+new Date()/1000); // UNIX current timestamp in seconds
 module.exports = function(deployer, network, accounts) {
-    const openingTime = currentTime; // epoch timestamp of deployment
+    const openingTime = currentTime 2*60; // epoch timestamp of deployment + two minutes for deployment
     const closingTime = currentTime + 604800 // + 1 week
 
     // //be careful! JavaScript months are 0 based: Jan = 0, Jun = 5
@@ -26,7 +26,7 @@ module.exports = function(deployer, network, accounts) {
     const gradedVestedLockUpAmounts = new web3.BigNumber(1000000e18);  // 1m tokens
 
     const rate = new web3.BigNumber(1012); //per 1 ether
-    const wallet = "0x6Aee4977C8D8F8947f0784Fe934D48C677FA14A1" //  CustomToken wallet;
+    const wallet = const wallet = address(0) // change this to your desired wallet to receive the CustomTokens
 
     const tokensInPrivateSale = new web3.BigNumber(17500000*10**18); // $10,000,000 / 0.60 * 1.05 (commission for generating direct sales)
 

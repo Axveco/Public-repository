@@ -4,7 +4,7 @@ import expectThrow from './helpers/expectThrow';
 
 const BigNumber = web3.BigNumber;
 const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000';
-const notowner = '0x80208074548736cF411e73eCAdA5d418A0E6E216';
+const notowner = 'fill in address here';
 
 require('chai')
   .use(require('chai-as-promised'))
