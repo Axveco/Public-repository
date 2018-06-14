@@ -1,4 +1,5 @@
 pragma solidity ^0.4.23;
+import "./OwnablePausable.sol";
 
 /**
  * @dev this contract has an internal balance which can only be withdrawn by the owner of the contract.
@@ -7,7 +8,7 @@ pragma solidity ^0.4.23;
  */
 contract Honeypot is OwnablePausable {
 
-  constructor() payable {
+  constructor() public payable {
     require(msg.value != 0);
     balance = msg.value;
   }
@@ -20,8 +21,8 @@ contract Honeypot is OwnablePausable {
    * @dev The transferBalance function sends the current balance of this contract to the owner,
    * but will revert if the owner is a new owner (less than 15 minutes)
    */
-  function transferBalance() onlyOwner {
-    require(ownerTransferTime >= now + 15 minutes);
+  function transferBalance() public onlyOwner {
+    require(ownershipTransferTime <= now + 15 minutes);
     balance = 0;
     owner.transfer(balance);
   }
@@ -30,7 +31,7 @@ contract Honeypot is OwnablePausable {
    * @dev only the current owner of the contract can call this function
    * and the winner will be announced if the balance is 0
    */
-  function announceWinner(string yourName) onlyOwner {
+  function announceWinner(string yourName) public onlyOwner {
     require(balance == 0);
     emit winnerAnnounced(msg.sender, yourName);
   }
