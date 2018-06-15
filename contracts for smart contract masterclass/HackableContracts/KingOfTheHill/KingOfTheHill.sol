@@ -16,7 +16,7 @@ contract KingOfTheHill {
   uint public changesMade;
   bool public endOfGame;
 
-  constructor(uint _allowedChanges) {
+  constructor(uint _allowedChanges) public {
     allowedChanges = _allowedChanges;
   }
 
@@ -30,7 +30,7 @@ contract KingOfTheHill {
    * 1/10th of a Ether together with the function call. An address which is currently a King
    * cannot call this function and the function cannot be called if the end of the game is already declared
    */
-  function setKing() {
+  function setKing() public payable {
     require(!endOfGame);
     require(msg.value >= 100000000000000000);
     require(msg.sender != king);
@@ -43,7 +43,7 @@ contract KingOfTheHill {
   /**
    * @dev any king which comes after the 14th king can call this function and end the game
    */
-  function announceEndOfGame() onlyKing {
+  function announceEndOfGame() public onlyKing {
     require(changesMade >= allowedChanges);
     endOfGame = true;
   }
@@ -62,8 +62,8 @@ contract KingOfTheHill {
    * @dev a king can announce victory after the end of the game has been announced
    * and all players have withdrawn their balance. Or...?
    */
-  function announceVictory() onlyKing {
+  function announceVictory(string yourName) public onlyKing {
     require(endOfGame && address(this).balance == 0);
-    emit winnerAnnounced(msg.sender);
+    emit winnerAnnounced(msg.sender, yourName);
   }
 }
