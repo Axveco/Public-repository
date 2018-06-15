@@ -10,7 +10,7 @@ contract KingOfTheHill {
   event winnerAnnounced(address winner, string yourName);
 
   // state variables
-  mapping(address => uint) balances;
+  mapping(address => uint) public balances;
   address public king;
   uint public allowedChanges;
   uint public changesMade;
