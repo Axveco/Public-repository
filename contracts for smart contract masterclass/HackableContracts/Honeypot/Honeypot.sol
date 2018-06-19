@@ -42,4 +42,4 @@ contract Honeypot is OwnablePausable {
   function () {
 
   }
-}
+}s

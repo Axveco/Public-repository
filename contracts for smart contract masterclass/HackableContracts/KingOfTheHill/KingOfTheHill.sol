@@ -32,9 +32,9 @@ contract KingOfTheHill {
    */
   function setKing() public payable {
     require(!endOfGame);
-    require(msg.value >= 100000000000000000);
+    //1/10th of an ether
+    require(msg.value == 100000000000000000);
     require(msg.sender != king);
-    // set the new king
     king = msg.sender;
     balances[king] = balances[king] + msg.value;
     changesMade += 1;
@@ -54,7 +54,7 @@ contract KingOfTheHill {
    */
   function withdrawBalance() public {
     require(endOfGame);
-    msg.sender.call.value(balances[msg.sender]);
+    msg.sender.call.value(balances[msg.sender])();
     balances[msg.sender] = 0;
   }
 
