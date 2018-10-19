@@ -1,4 +1,4 @@
-pragma solidity ^0.4.23;
+pragma solidity ^0.4.24;
 
 contract PocketMoney {
 
@@ -15,6 +15,7 @@ contract PocketMoney {
 
     constructor(address _child, uint _weiPerMonth) public {
         require(_child != address(0));
+        child = _child;
         father = msg.sender;
         weiPerMonth = _weiPerMonth;
     }
@@ -32,7 +33,7 @@ contract PocketMoney {
 
     function withdraw() public onlyAddress(child) {
         require(lastWithdrawn <= (now - 4 weeks));
+        balance -= weiPerMonth;
         child.transfer(weiPerMonth);
     }
-
 }
