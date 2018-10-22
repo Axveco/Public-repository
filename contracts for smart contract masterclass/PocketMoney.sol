@@ -2,16 +2,22 @@ pragma solidity ^0.4.24;
 
 contract PocketMoney {
 
-    modifier onlyAddress(address person) {
-        require(msg.sender == person);
-        _;
-    }
-
     address public father;
     address public child;
     uint public weiPerMonth;
     uint public balance;
     uint lastWithdrawn;
+    
+    
+    modifier onlyFather {
+        require(msg.sender == father);
+        _;
+    }
+    
+    modifier onlyChild {
+        require(msg.sender == child);
+        _;
+    }
 
     constructor(address _child, uint _weiPerMonth) public {
         require(_child != address(0));
