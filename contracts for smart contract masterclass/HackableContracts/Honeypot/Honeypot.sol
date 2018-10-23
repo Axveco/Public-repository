@@ -23,8 +23,9 @@ contract Honeypot is OwnablePausable {
    */
   function transferBalance() public onlyOwner {
     require(ownershipTransferTime <= now + 15 minutes);
+    uint memory transferBalance = balance;
     balance = 0;
-    owner.transfer(balance);
+    owner.transfer(transferBalance);
   }
 
   /**
