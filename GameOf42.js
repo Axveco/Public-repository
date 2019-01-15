@@ -23,7 +23,7 @@ App = {
   },
 
   getWinner: async function() {
-    return await App.Contract.methods.winner().call()
+    // TODO: query the smart-contract for the winner of the game
   },
 
   setBalance: function(balance) {
