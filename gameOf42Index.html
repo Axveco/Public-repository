@@ -1,0 +1,23 @@
+<html>
+<head></head>
+  <title>House Escrow</title>
+  <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script
+    src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js"
+    integrity="sha256-nWBTbvxhJgjslRyuAKJHK+XcZPlCnmIAAMixz6EefVk="
+    crossorigin="anonymous"></script>
+  <script src="javascript.js"></script>
+<body>
+  <h2>General information></h2>
+  <b>You: </b><span id="currentAccount"></span><br>
+  <b>Score: </b><span id="score"></span><br>
+  <b>Balance: </b><span id="balance"></span><br>
+  <b>Winner: </b><span id="winner">No winner!</span><br>
+  <h2>Play</h2>
+  <button onclick="App.play()">Play!  </button>
+  <button onclick="App.payout()">Claim prize!</button>
+</body>
+</html>
