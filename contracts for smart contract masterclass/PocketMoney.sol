@@ -26,18 +26,18 @@ contract PocketMoney {
         weiPerMonth = _weiPerMonth;
     }
 
-     function setWeiPerMonth(uint newWeiPerMonth) onlyAddress(father) public {
+     function setWeiPerMonth(uint newWeiPerMonth) onlyFather public {
         weiPerMonth = newWeiPerMonth;
     }
 
-    function deposit() payable onlyAddress(father) public {
+    function deposit() payable onlyFather public {
         require(msg.value != 0);
         // integer overflow check
         require(balance + msg.value > balance);
         balance += msg.value;
     }
 
-    function withdraw() public onlyAddress(child) {
+    function withdraw() public onlyChild {
         require(lastWithdrawn <= (now - 4 weeks));
         balance -= weiPerMonth;
         child.transfer(weiPerMonth);
