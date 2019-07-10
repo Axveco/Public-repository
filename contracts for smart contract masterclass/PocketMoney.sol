@@ -39,6 +39,7 @@ contract PocketMoney {
 
     function withdraw() public onlyChild {
         require(lastWithdrawn <= (now - 4 weeks));
+        require(balance >= weiPerMonth);
         balance -= weiPerMonth;
         child.transfer(weiPerMonth);
     }
